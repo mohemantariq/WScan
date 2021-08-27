@@ -29,6 +29,7 @@ namespace WScan
         {
 
             services.AddControllers();
+            services.AddScoped<IDeviceService, DeviceService>();
             services.AddScoped<IScannerService, ScannerService>();
 
             services.AddSwaggerGen(c =>

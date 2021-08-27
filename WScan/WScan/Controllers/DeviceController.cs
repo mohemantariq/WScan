@@ -9,18 +9,18 @@ namespace WScan.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ScannerController : Controller
+    public class DeviceController : Controller
     {
-        private readonly IScannerService _scannerService;
-        public ScannerController(IScannerService scannerService)
+        private readonly IDeviceService _deviceService;
+        public DeviceController(IDeviceService deviceService)
         {
-            _scannerService = scannerService;
+            _deviceService = deviceService;
         }
 
         [HttpGet]
         public IActionResult GetListofScanners()
         {
-            var scanners = _scannerService.GetScanners();
+            var scanners = _deviceService.GetScanners();
             return Ok(scanners);
         }
     }

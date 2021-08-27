@@ -7,9 +7,8 @@ using WScan.Shared;
 
 namespace WScan.Service
 {
-    public interface IScannerService
+    public interface IDeviceService
     {
-        public Document Scan(string ScannerName);
-        public Document Scan();
+        public List<Scanner> GetScanners();
     }
 }
