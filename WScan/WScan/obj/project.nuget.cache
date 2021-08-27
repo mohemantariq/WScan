@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "dgSpecHash": "wXf6OEa+IVUz7U5A+MWHQMKTwgQFnWDWNvVHDspcHVTEVXtflLHcLr6cjv6CNhV1EMb/Kim7fHsixdWs678VGw==",
+  "success": true,
+  "projectFilePath": "D:\\ods\\WScan\\WScan\\WScan\\WScan.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Moheman-ODS\\.nuget\\packages\\asprise-scan-scanner-twain-wia-api\\12.0.0\\asprise-scan-scanner-twain-wia-api.12.0.0.nupkg.sha512",
+    "C:\\Users\\Moheman-ODS\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\Moheman-ODS\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Moheman-ODS\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.14\\microsoft.visualstudio.azure.containers.tools.targets.1.10.14.nupkg.sha512",
+    "C:\\Users\\Moheman-ODS\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\Moheman-ODS\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\Moheman-ODS\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\Moheman-ODS\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'asprise-scan-scanner-twain-wia-api 12.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "libraryId": "asprise-scan-scanner-twain-wia-api",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
+}
