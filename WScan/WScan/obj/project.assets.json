@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "net5.0": {
+      "asprise-scan-scanner-twain-wia-api/12.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/asprise-scan-scanner-twain-wia-api.dll": {}
+        },
+        "runtime": {
+          "lib/net40/asprise-scan-scanner-twain-wia-api.dll": {}
+        }
+      },
       "Microsoft.Extensions.ApiDescription.Server/3.0.0": {
         "type": "package",
         "build": {
@@ -82,10 +91,51 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "WScan.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "WScan.Shared": "1.0.0",
+          "asprise-scan-scanner-twain-wia-api": "12.0.0"
+        },
+        "compile": {
+          "bin/placeholder/WScan.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WScan.Service.dll": {}
+        }
+      },
+      "WScan.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/WScan.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WScan.Shared.dll": {}
+        }
       }
     }
   },
   "libraries": {
+    "asprise-scan-scanner-twain-wia-api/12.0.0": {
+      "sha512": "G6ACx88AUutNX5UB1yM2uwbesa9gbxR8Di3maNltsbCp66y0xb/N2pWQN/abicXyzO6RiPwVE3ML7fyqEEOLfA==",
+      "type": "package",
+      "path": "asprise-scan-scanner-twain-wia-api/12.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "asprise-scan-scanner-twain-wia-api.12.0.0.nupkg.sha512",
+        "asprise-scan-scanner-twain-wia-api.nuspec",
+        "content/ReadMe-AspriseScan.txt",
+        "content/Resources/asprise.ico",
+        "content/asprise_imaging.dll",
+        "content/asprise_imaging_x64.dll",
+        "lib/net40/asprise-scan-scanner-twain-wia-api.dll",
+        "readme.txt"
+      ]
+    },
     "Microsoft.Extensions.ApiDescription.Server/3.0.0": {
       "sha512": "LH4OE/76F6sOCslif7+Xh3fS/wUUrE5ryeXAMcoCnuwOQGT5Smw0p57IgDh/pHgHaGz/e+AmEQb7pRgb++wt0w==",
       "type": "package",
@@ -271,12 +321,23 @@
         "swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+    },
+    "WScan.Service/1.0.0": {
+      "type": "project",
+      "path": "../WScan.Service/WScan.Service.csproj",
+      "msbuildProject": "../WScan.Service/WScan.Service.csproj"
+    },
+    "WScan.Shared/1.0.0": {
+      "type": "project",
+      "path": "../WScan.Shared/WScan.Shared.csproj",
+      "msbuildProject": "../WScan.Shared/WScan.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.10.14",
-      "Swashbuckle.AspNetCore >= 5.6.3"
+      "Swashbuckle.AspNetCore >= 5.6.3",
+      "WScan.Service >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -286,9 +347,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ods\\WScan\\WScan\\WScan\\WScan.csproj",
-      "projectName": "WScan",
-      "projectPath": "D:\\ods\\WScan\\WScan\\WScan\\WScan.csproj",
+      "projectUniqueName": "D:\\ods\\WScan\\WScan\\WScan\\WScan.API.csproj",
+      "projectName": "WScan.API",
+      "projectPath": "D:\\ods\\WScan\\WScan\\WScan\\WScan.API.csproj",
       "packagesPath": "C:\\Users\\Moheman-ODS\\.nuget\\packages\\",
       "outputPath": "D:\\ods\\WScan\\WScan\\WScan\\obj\\",
       "projectStyle": "PackageReference",
@@ -309,7 +370,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\ods\\WScan\\WScan\\WScan.Service\\WScan.Service.csproj": {
+              "projectPath": "D:\\ods\\WScan\\WScan\\WScan.Service\\WScan.Service.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -352,5 +417,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'asprise-scan-scanner-twain-wia-api 12.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "libraryId": "asprise-scan-scanner-twain-wia-api",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }

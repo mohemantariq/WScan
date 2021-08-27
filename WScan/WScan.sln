@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WScan.API", "WScan\WScan.AP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WScan.Service", "WScan.Service\WScan.Service.csproj", "{969CF21E-8645-4865-B610-1BA841EEA67C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WScan.Shared", "WScan.Shared\WScan.Shared.csproj", "{3C1F867E-4DCE-4D75-8F46-21E960D2BADB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{969CF21E-8645-4865-B610-1BA841EEA67C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{969CF21E-8645-4865-B610-1BA841EEA67C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{969CF21E-8645-4865-B610-1BA841EEA67C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C1F867E-4DCE-4D75-8F46-21E960D2BADB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C1F867E-4DCE-4D75-8F46-21E960D2BADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C1F867E-4DCE-4D75-8F46-21E960D2BADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C1F867E-4DCE-4D75-8F46-21E960D2BADB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
