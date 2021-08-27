@@ -17,9 +17,15 @@ namespace WScan.API.Controllers
             _scannerService = scannerService;
         }
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Scan()
         {
             return Ok(_scannerService.Scan());
+        }
+
+        [HttpGet("ScanToBase64")]
+        public IActionResult ScanToBase64()
+        {
+            return Ok(_scannerService.ScanToBase64());
         }
     }
 }

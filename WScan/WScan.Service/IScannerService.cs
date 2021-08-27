@@ -11,5 +11,6 @@ namespace WScan.Service
     {
         public Document Scan(string ScannerName);
         public Document Scan();
+        public Document ScanToBase64();
     }
 }

@@ -9,6 +9,6 @@ namespace WScan.Shared
     public class Document
     {
         public string Path { get; set; }
-
+        public string Base64 { get; set; }
     }
 }
