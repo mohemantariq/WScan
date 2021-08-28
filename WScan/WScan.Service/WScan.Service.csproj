@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\WScan.Shared\WScan.Shared.csproj" />
     <PackageReference Include="asprise-scan-scanner-twain-wia-api" Version="12.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
