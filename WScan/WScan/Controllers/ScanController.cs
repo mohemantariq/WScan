@@ -12,20 +12,24 @@ namespace WScan.API.Controllers
     public class ScanController : Controller
     {
         private readonly IScannerService _scannerService;
-        public ScanController(IScannerService scannerService)
+        private readonly DBContext _context;
+
+        public ScanController(IScannerService scannerService, DBContext context)
         {
             _scannerService = scannerService;
+            _context = context;
         }
+
         [HttpGet]
-        public IActionResult Scan()
+        public async Task<IActionResult> Scan()
         {
-            return Ok(_scannerService.Scan());
+            return Ok(await _scannerService.ScanAsync());
         }
 
         [HttpGet("ScanToBase64")]
-        public IActionResult ScanToBase64()
+        public async Task<IActionResult> ScanToBase64Async()
         {
-            return Ok(_scannerService.ScanToBase64());
+            return Ok(await _scannerService.ScanToBase64());
         }
     }
 }

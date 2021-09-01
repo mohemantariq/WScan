@@ -5,11 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using WScan.Shared;
 using WIA;
+using Microsoft.EntityFrameworkCore;
+using WScan.Service.Services;
 
 namespace WScan.Service
 {
     public class DeviceService : IDeviceService
     {
+        private readonly IOptionService _optionService;
+
+        public DeviceService(IOptionService optionService)
+        {
+            _optionService = optionService;
+        }
         public List<Scanner> GetScanners()
         {
             var Scanners = new List<Scanner>();
@@ -32,6 +40,11 @@ namespace WScan.Service
 
             }
             return Scanners;
+        }
+
+        public async Task SelectScanner(string value)
+        {
+            await _optionService.SetOption("SelectedScanner", value);
         }
     }
 }
