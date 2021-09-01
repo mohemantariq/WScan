@@ -1,38 +1,43 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading.Tasks;
 using WIA;
+using WScan.Service.Services;
 using WScan.Shared;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace WScan.Service
 {
     public class ScannerService : IScannerService
     {
         private Microsoft.Extensions.Hosting.IHostingEnvironment _hostingEnvironment;
-        public ScannerService(Microsoft.Extensions.Hosting.IHostingEnvironment hostingEnvironment)
+        private readonly IOptionService _optionService;
+        public ScannerService(Microsoft.Extensions.Hosting.IHostingEnvironment hostingEnvironment, IOptionService optionService)
         {
             _hostingEnvironment = hostingEnvironment;
+            _optionService = optionService;
 
         }
-        public Document Scan(string ScannerName)
+        public async Task<Document> ScanAsync(string ScannerName)
         {
+            await CheckForScanner();
             throw new NotImplementedException();
         }
 
-        public Document Scan()
+        private async Task CheckForScanner()
         {
+            if (string.IsNullOrEmpty(await _optionService.GetOptionValue("SelectedScanner")))
+                throw new NullReferenceException("pelase select scanner first ");
+        }
+
+        public async Task<Document> ScanAsync()
+        {
+            await CheckForScanner();
+
             try
             {
                 string id = Guid.NewGuid().ToString();
-                ImageFile imageFile = ScanDocumnet();
+                ImageFile imageFile = await ScanDocumnetAsync();
 
                 // Save the image in some path with filename
                 var path = @$"{_hostingEnvironment.ContentRootPath}/Upload/{id}.jpeg";
@@ -53,13 +58,14 @@ namespace WScan.Service
             }
         }
 
-        private static ImageFile ScanDocumnet()
+        private async Task<ImageFile> ScanDocumnetAsync()
         {
+            var selectedScannerId = await _optionService.GetOptionValue("SelectedScanner");
             // Create a DeviceManager instance
             var deviceManager = new DeviceManager();
 
             // Create an empty variable to store the scanner instance
-            DeviceInfo firstScannerAvailable = null;
+            DeviceInfo selectedScanner = null;
 
             // Loop through the list of devices to choose the first available
             for (int i = 1; i <= deviceManager.DeviceInfos.Count; i++)
@@ -69,14 +75,14 @@ namespace WScan.Service
                 {
                     continue;
                 }
-
-                firstScannerAvailable = deviceManager.DeviceInfos[i];
+                if (deviceManager.DeviceInfos[i].Properties["Name"].get_Value() == selectedScannerId)
+                    selectedScanner = deviceManager.DeviceInfos[i];
 
                 break;
             }
 
             // Connect to the first available scanner
-            var device = firstScannerAvailable.Connect();
+            var device = selectedScanner.Connect();
 
             // Select the scanner
             var scannerItem = device.Items[1];
@@ -91,11 +97,13 @@ namespace WScan.Service
             return imageFile;
         }
 
-        public Document ScanToBase64()
+        public async Task<Document> ScanToBase64()
         {
+            await CheckForScanner();
+
             try
             {
-                ImageFile imageFile = ScanDocumnet();
+                ImageFile imageFile = await ScanDocumnetAsync();
                 Byte[] imageBytes = (byte[])imageFile.FileData.get_BinaryData(); // <– Converts the ImageFile to a byte array
                 return new Document() { Base64 = Convert.ToBase64String(imageBytes) };
             }
@@ -105,5 +113,7 @@ namespace WScan.Service
                 throw;
             }
         }
+
+
     }
 }

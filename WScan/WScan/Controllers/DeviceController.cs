@@ -23,5 +23,11 @@ namespace WScan.Controllers
             var scanners = _deviceService.GetScanners();
             return Ok(scanners);
         }
+        [HttpPost("select")]
+        public async Task<IActionResult> SelectScannerAsync(string id)
+        {
+            await _deviceService.SelectScanner(id);
+            return Ok();
+        }
     }
 }
