@@ -42,6 +42,14 @@ namespace WScan.Service
             return Scanners;
         }
 
+        public async Task<Scanner> GetSelectedScannerAsync()
+        {
+            var selectedScanner = await _optionService.GetOptionValue("SelectedScanner");
+            if (selectedScanner != null)
+                return new Scanner { Name = selectedScanner };
+            else return null;
+        }
+
         public async Task SelectScanner(string value)
         {
             await _optionService.SetOption("SelectedScanner", value);

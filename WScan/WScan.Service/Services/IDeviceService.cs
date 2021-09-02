@@ -10,6 +10,7 @@ namespace WScan.Service
     public interface IDeviceService
     {
         public List<Scanner> GetScanners();
+        public Task<Scanner> GetSelectedScannerAsync();
         Task SelectScanner(string id);
     }
 }
