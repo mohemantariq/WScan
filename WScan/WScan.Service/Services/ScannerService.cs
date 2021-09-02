@@ -3,6 +3,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using WIA;
+using WScan.Service.Models;
 using WScan.Service.Services;
 using WScan.Shared;
 
@@ -18,21 +19,16 @@ namespace WScan.Service
             _optionService = optionService;
 
         }
-        public async Task<Document> ScanAsync(string ScannerName)
-        {
-            await CheckForScanner();
-            throw new NotImplementedException();
-        }
+
 
         private async Task CheckForScanner()
         {
             if (string.IsNullOrEmpty(await _optionService.GetOptionValue("SelectedScanner")))
-                throw new NullReferenceException("pelase select scanner first ");
+                throw new NullReferenceException();
         }
 
-        public async Task<Document> ScanAsync()
+        public async Task<DocumentScanResponse> ScanAsync()
         {
-            await CheckForScanner();
 
             try
             {
@@ -49,17 +45,22 @@ namespace WScan.Service
 
                 // Save image !
                 imageFile.SaveFile(path);
-                return new Document() { Id = id };
+                return new DocumentScanResponse() { Success = true, Document = new Document { Id = id } };
+            }
+            catch (NullReferenceException ex)
+            {
+                return new DocumentScanResponse() { Success = false, Message = "Must Select Scanner First" };
             }
             catch (COMException ex)
             {
-
-                throw;
+                return new DocumentScanResponse() { Success = false, Message = "Scan Exception" };
             }
         }
 
         private async Task<ImageFile> ScanDocumnetAsync()
         {
+            await CheckForScanner();
+
             var selectedScannerId = await _optionService.GetOptionValue("SelectedScanner");
             // Create a DeviceManager instance
             var deviceManager = new DeviceManager();
@@ -97,20 +98,22 @@ namespace WScan.Service
             return imageFile;
         }
 
-        public async Task<Document> ScanToBase64()
+        public async Task<DocumentScanResponse> ScanToBase64()
         {
-            await CheckForScanner();
 
             try
             {
                 ImageFile imageFile = await ScanDocumnetAsync();
                 Byte[] imageBytes = (byte[])imageFile.FileData.get_BinaryData(); // <– Converts the ImageFile to a byte array
-                return new Document() { Base64 = Convert.ToBase64String(imageBytes) };
+                return new DocumentScanResponse() { Success = true, Document = new Document { Base64 = Convert.ToBase64String(imageBytes) } };
+            }
+            catch (NullReferenceException ex)
+            {
+                return new DocumentScanResponse() { Success = false, Message = "Must Select Scanner First" };
             }
             catch (COMException ex)
             {
-
-                throw;
+                return new DocumentScanResponse() { Success = false, Message = "Scan Exception" };
             }
         }
 
