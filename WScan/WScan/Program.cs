@@ -21,6 +21,6 @@ namespace WScan
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                }).UseWindowsService();
     }
 }

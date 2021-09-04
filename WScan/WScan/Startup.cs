@@ -60,9 +60,11 @@ namespace WScan
             );
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            var exePath = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
+            var directoryPath = Path.GetDirectoryName(exePath);
             app.UseStaticFiles(new StaticFileOptions
             {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Upload"))
+                FileProvider = new PhysicalFileProvider(Path.Combine(directoryPath, "Upload"))
             });
             app.UseRouting();
 
