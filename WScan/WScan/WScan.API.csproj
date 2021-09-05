@@ -18,7 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Upload\" />
+    <Folder Include="Upload" />
   </ItemGroup>
-
+  <ItemGroup>
+    <Content  Include="Install.ps1" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
 </Project>
