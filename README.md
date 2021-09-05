@@ -13,7 +13,7 @@ Document Scanning API Your Web Applications (tested on win only)
 - http://localhost:5002/device/select to select device 
 - http://localhost:5002/scan to start scanning and save document as image and return the id in response
 
-#####you can change port 5002 to any port from appsettings 
+you can change port 5002 to any port from appsettings 
 
 
  
