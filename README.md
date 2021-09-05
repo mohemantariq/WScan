@@ -1,4 +1,4 @@
-# WScan - Web Document Scanner (Scan from browser)
+# WScan - Open Source Web Document Scanner (Scan from browser)
 ### free alternative to Dynamic Web TWAIN 
 Document Scanning API Your Web Applications (tested on win only)
 
